@@ -1,7 +1,7 @@
 # Site settings
 title: Welcome, sir
 SEOTitle: 一生俯首拜明阳 | Lee Blog
-header-img: img/post-bg-desk.jpg
+header-img: img/post-bg-desk2.jpg
 email: mr_lee_007@sina.com
 description: "Every failure is leading towards success."
 keyword: "前端技术博客|个人, HTML5, CSS3 , Javascript"
@@ -12,7 +12,7 @@ github_repo: "https://github.com/dmxyws/dmxyws.github.io.git" # you code reposit
 # Sidebar settings
 sidebar: true                           # whether or not using Sidebar.
 sidebar-about-description: "亦行的个人网站"
-sidebar-avatar: /img/about-BY-gentle.jpg      # use absolute URL, seeing it's used in both `/` and `/about/`
+sidebar-avatar: /img/avatar.jpg      # use absolute URL, seeing it's used in both `/` and `/about/`
 
 
 
