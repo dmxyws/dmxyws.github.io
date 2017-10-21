@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>盒子3D旋转效果</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        #box-3d{
+            position: relative;
+            margin: 150px auto;
+            width: 200px;
+            height: 200px;
+            transform-style: preserve-3d;
+            transform-origin: 50% 50% -100px;
+        }
+        .box{
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 100%;
+            font-size: 30px;
+            font-weight: bold;
+            text-align: center;
+            line-height: 200px;
+            box-shadow: 0 0 15px 0 purple inset;
+        }
+        .box2{
+            transform-origin: top;
+            transform: translateZ(-200px) rotateX(90deg);
+        }
+        .box3{
+            transform-origin: right;
+            transform: translateZ(-200px) rotateY(90deg);
+        }
+        .box4{
+            transform: translateZ(-200px) rotateZ(180deg) rotateY(180deg);
+        }
+        .box5{
+            transform-origin: bottom;
+            transform: translateZ(-200px) rotateX(-90deg);
+        }
+        .box6{
+            transform-origin: left;
+            transform: translateZ(-200px) rotateY(-90deg);
+        }
+    </style>
+</head>
+<body>
+    <div id="box-3d">
+        <div class="box box1">1</div>
+        <div class="box box2">2</div>
+        <div class="box box3">3</div>
+        <div class="box box4">4</div>
+        <div class="box box5">5</div>
+        <div class="box box6">6</div>
+    </div>
+</body>
+<script>
+    var box3d = document.getElementById('box-3d');
+    var deg = 0;
+    setInterval(function () {
+        box3d.style.transform = 'rotateX(' + deg + 'deg) rotateY(' + deg + 'deg) rotateZ(' + deg + 'deg)';
+        deg++;
+    },20);
+</script>
+</html>
