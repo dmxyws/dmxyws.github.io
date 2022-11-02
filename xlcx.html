@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>证书查询-中国民办教育学生信息网（民教网）</title>
+  <style>
+    body{
+      margin: 0;
+      background-color: #F1F1F1;
+    }
+    .wrapper{
+      margin: 30px 0;
+      height: calc(100vh - 150px - 60px);
+    }
+    .wrapper .container{
+      margin: auto;
+      height: 100%;
+      width: 998px;
+      background-color: #fff;
+    }
+    .wrapper .container .crumbs{
+      padding-left: 20px;
+      height: 40px;
+      line-height: 40px;
+      color: #333333;
+      border-bottom: 1px solid #E6E6E6;
+    }
+    .wrapper .container .searchCard{
+      display: flex;
+    }
+    .wrapper .container .searchCard .left{
+      width: 779px;
+      padding-bottom: 20px;
+      border-right: 1px solid #E6E6E6 ;
+    }
+    .wrapper .container .searchCard .title{
+      font-size: 24px;
+      font-weight: normal;
+      text-align: center;
+      line-height: 40px;
+      padding: 15px 0 10px 0;
+      color: #2EAFBB;
+    }
+    .wrapper .container .searchCard .searchInfo{
+      margin: 20px auto 0;
+      padding: 30px 20px;
+      width: 660px;
+      background-color: #F6F6F6;
+      border-bottom: 3px solid #DDD;
+      border-radius: 8px;
+      background-clip: padding-box;
+      display: flex;
+      align-items: center;
+    }
+    .wrapper .container .searchCard .searchInfo .searchForm{
+      width: 358px;
+    }
+    .wrapper .container .searchCard .searchInfo .searchForm .formItem{
+      width: 100%;
+      display: flex;
+      align-items: center;
+    }
+    .wrapper .container .searchCard .searchInfo .searchForm .formItem .label{
+      width: 100px;
+      height: 56px;
+      line-height: 56px;
+      text-align: right;
+      vertical-align: text-top;
+      color: #333333;
+    }
+    .wrapper .container .searchCard .searchInfo .searchForm .formItem input{
+      margin-top: 6px 0 4px 0;
+      padding: 0 6px;
+      width: 214px;
+      height: 30px;
+      line-height: 30px;
+      border: 1px solid #ccc;
+      outline-style: none;
+      -webkit-appearance: none;
+    }
+    .wrapper .container .searchCard .searchInfo .searchForm .formItem .submit{
+      margin-left: 100px;
+      margin-top: 12px;
+      width: 100px;
+      height: 32px;
+      line-height: 32px;
+      border-radius: 4px;
+      font-size: 16px;
+      color: #FFFFFF;
+      text-align: center;
+      background: #2EAFBB;
+      cursor: pointer;
+    }
+    .wrapper .container .searchCard .searchInfo .searchForm .formItem .submit:hover{
+      opacity: 0.7;
+    }
+
+    /* 查询-注意 */
+    .wrapper .container .searchCard .searchInfo .careful{
+      margin: 20px 0;
+      padding-left: 20px;
+      width: 280px;   
+      color: #666;
+      background: url(https://t4.chei.com.cn/chsi/images/2014/vline.png?v=1483086065602) no-repeat;
+    }
+    .wrapper .container .searchCard .searchInfo .careful .c_legend{
+      line-height: 28px;
+      font-weight: bold;
+      color: #666;
+    }
+    .wrapper .container .searchCard .searchInfo .careful .c_item{
+      line-height: 28px;
+    }
+    .wrapper .container .searchCard .searchInfo .careful .c_item span{
+      color: #2EAFBB;
+      cursor: pointer;
+    }
+
+    /* 查询-其他查询方式 */
+    .wrapper .container .searchCard .right{
+      box-sizing: border-box;
+      width: 220px;
+      padding: 0 18px;
+    }
+    .wrapper .container .searchCard .right .legend{
+      height: 60px;
+      line-height: 66px;
+      font-size: 16px;
+      font-weight: normal;
+      color: #2EAFBB;
+    }
+    .wrapper .container .searchCard .right .r_item{
+      line-height: 24px;
+      font-size: 12px;
+      color: #333333;
+    }
+    .mt20{
+      margin-top: 20px;
+    }
+
+    /* 底部 */
+    .footer{
+      height: 150px;
+      color: #fff9;
+      background: #403e3f;
+    }
+    .footer .f_links{
+      margin: 0 auto;
+      width: 998px;
+      height: 100%;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrapper">
+    <div class="container">
+      <div class="crumbs">
+        当前位置：民教网 > 证书查询
+      </div>
+      <div class="searchCard">
+        <div class="left">
+          <div class="title">全国民办院校学生学业证书查询</div>
+          <div class="searchInfo">
+            <div class="searchForm">
+              <div class="formItem">
+                <div class="label">姓名：</div>
+                <input type="text" placeholder="请输入姓名">
+              </div>
+              <div class="formItem">
+                <div class="label">证书编号：</div>
+                <input type="text" placeholder="请输入证书编号">
+              </div><div class="formItem">
+                <div class="submit">免费查询</div>
+              </div>
+            </div>
+            <div class="careful">
+              <div class="c_legend">注意：</div>
+              <div class="c_item">1、点此查看<span>学历证书查询范围</span>。</div>
+              <div class="c_item">2、查询学历证书需经权属人同意。</div>
+              <div class="c_item">3、学历证书查询结果不得用于违背权属人意愿之用途。</div>
+              <div class="c_item">4、学历证书和证明书由各高校自行印制，证书编号通常为18位。不知道证书编号的，可咨询发证学校。</div>
+            </div>
+          </div>
+        </div>
+        <div class="right">
+          <div class="legend">其他查询方式</div>
+          <div class="r_item">• 本人查询</div>
+          <div class="r_item">本人注册学信网账号可免费查询。</div>
+          <div class="r_item mt20">• 企业用户查询</div>
+          <div class="r_item">企业用户登录国家大学生就业服务平台后进行查询。</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="footer">
+    <div class="f_links">
+      <div class="f_link">中心简介</div>
+      <div class="f_link">网站简介</div>
+      <div class="f_link">版权声明</div>
+      <div class="f_link">网站宣传</div>
+      <div class="f_link">联系我们</div>
+      <div class="f_link">招聘信息</div>
+      <div class="f_link">帮助中心</div>
+      <div class="f_link">学信十周年</div>
+      <div class="f_link">大事记</div>
+    </div>
+  </div>
+</body>
+</html>
