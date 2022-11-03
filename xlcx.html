@@ -88,12 +88,18 @@ description: "Thinking will not overcome fear but action will."
     .c_wrap .c_w_images .img{
       border-right: 2px solid #ECECEC;
       border-bottom: 2px solid #ECECEC;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
     .c_wrap .c_w_images .img.i_pic{
       height: 166px;
     }
     .c_wrap .c_w_images .img.i_code{
       height: 124px;
+    }
+    .c_wrap .c_w_images .img img{
+      width: 100px;
     }
 
     /* 声明 */
@@ -215,6 +221,7 @@ description: "Thinking will not overcome fear but action will."
 
     /* 底部 */
     .footer{
+      width: 100%;
       height: 150px;
       color: #fff9;
       background: #403e3f;
@@ -236,6 +243,22 @@ description: "Thinking will not overcome fear but action will."
       display: none;
     }
   </style>
+  <script type="text/javascript">
+    window.onload = function () {
+      const submitEl = document.getElementById('submit');
+      submitEl.onclick = function () {
+        const eduName = document.getElementById('eduName').value
+        const eduId = document.getElementById('eduId').value
+        if (eduName === '李建' && eduId === '164687201705673486') {
+          document.getElementById('c_1').classList.add('hidden')
+          document.getElementById('c_2').classList.remove('hidden')
+        } else {
+          alert('没有获取到信息，请重新检查后再重新搜索')
+        }
+        console.log(eduName+' , '+ eduId);
+      }
+    }
+  </script>
 </head>
 <body>
   <div class="wrapper">
@@ -245,20 +268,20 @@ description: "Thinking will not overcome fear but action will."
       </div>
       <div class="searchCard">
         <div class="left">
-          <div class="c_1 hidden">
+          <div class="c_1" id="c_1">
             <div class="title">全国民办院校学生学业证书查询</div>
             <div class="searchInfo">
               <div class="searchForm">
                 <div class="formItem">
                   <div class="label">姓名：</div>
-                  <input type="text" placeholder="请输入姓名">
+                  <input type="text" placeholder="请输入姓名" id="eduName">
                 </div>
                 <div class="formItem">
                   <div class="label">证书编号：</div>
-                  <input type="text" placeholder="请输入证书编号">
+                  <input type="text" placeholder="请输入证书编号" id="eduId">
                 </div>
                 <div class="formItem">
-                  <div class="submit">免费查询</div>
+                  <div class="submit" id="submit">免费查询</div>
                 </div>
               </div>
               <div class="careful">
@@ -272,7 +295,7 @@ description: "Thinking will not overcome fear but action will."
           </div>
 
           <!-- 查询结果 -->
-          <div class="c_2 ">
+          <div class="c_2 hidden" id="c_2">
             <div class="title">全国民办高等教育学历证书查询结果</div>
             <div class="c_wrap">
               <div class="c_w_table">
@@ -312,14 +335,18 @@ description: "Thinking will not overcome fear but action will."
                 </div>
                 <div class="row">
                   <div class="td label">证书编号</div>
-                  <div class="td value"></div>
+                  <div class="td value">164687201705673486</div>
                   <div class="td label">毕结业结论</div>
                   <div class="td value">毕业</div>
                 </div>
               </div>
               <div class="c_w_images">
-                <div class="i_pic img"></div>
-                <div class="i_code img"></div>
+                <div class="i_pic img">
+                  <img src="https://dmxyws.github.io/img/edu_pic.jpg">
+                </div>
+                <div class="i_code img">
+                  <img src="https://dmxyws.github.io/img/edu_code.png">
+                </div>
               </div>
             </div>
             <!-- 声明 -->
