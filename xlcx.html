@@ -17,6 +17,7 @@ description: "Thinking will not overcome fear but action will."
     }
     .wrapper{
       margin: 30px 0;
+      min-height: 580px;
       height: calc(100vh - 150px - 60px);
     }
     .wrapper .container{
@@ -34,12 +35,82 @@ description: "Thinking will not overcome fear but action will."
     }
     .wrapper .container .searchCard{
       display: flex;
+      height: calc(100% - 41px);
     }
     .wrapper .container .searchCard .left{
       width: 779px;
+      height: calc(100% - 20px);
       padding-bottom: 20px;
       border-right: 1px solid #E6E6E6 ;
     }
+
+    .wrapper .container .searchCard .left .c_2 .c_wrap{
+      margin-top: 20px;
+      padding: 0 30px;
+    }
+
+    /* 学历信息表格 */
+    .c_wrap{
+      display: flex;
+    }
+    .c_wrap .c_w_table{
+      flex: 1;
+      color: #323136;
+      border-top: 2px solid #ECECEC;
+      border-left: 2px solid #ECECEC;
+    }
+    .c_wrap .c_w_table .row{
+      display: flex;
+    }
+    .c_wrap .c_w_table .row .td{
+      height: 40px;
+      line-height: 40px;
+      font-size: 13px;
+      border-bottom: 2px solid #ECECEC;
+      border-right: 2px solid #ECECEC;
+    }
+    .c_wrap .c_w_table .row .td.label{
+      width: 86px;
+      font-weight: bold;
+      text-align: center;
+      background-color: #F6F6F6;
+    }
+    .c_wrap .c_w_table .row .td.value{
+      flex: 1;
+      padding-left: 10px;
+    }
+
+    .c_wrap .c_w_images{
+      width: 120px;
+      border-top: 2px solid #ECECEC;
+    }
+
+    .c_wrap .c_w_images .img{
+      border-right: 2px solid #ECECEC;
+      border-bottom: 2px solid #ECECEC;
+    }
+    .c_wrap .c_w_images .img.i_pic{
+      height: 166px;
+    }
+    .c_wrap .c_w_images .img.i_code{
+      height: 124px;
+    }
+
+    /* 声明 */
+    .c2_desc{
+      margin-top: 20px;
+      padding: 0 30px;
+      font-size: 13px;
+      color: #323136;
+    }
+    .c2_desc .c2_d_legend{
+      font-weight: bold;
+    }
+    .c2_desc .c2_d_item {
+      line-height: 26px;
+      text-indent: 2em;
+    }
+
     .wrapper .container .searchCard .title{
       font-size: 24px;
       font-weight: normal;
@@ -141,9 +212,6 @@ description: "Thinking will not overcome fear but action will."
       font-size: 12px;
       color: #333333;
     }
-    .mt20{
-      margin-top: 20px;
-    }
 
     /* 底部 */
     .footer{
@@ -159,6 +227,14 @@ description: "Thinking will not overcome fear but action will."
       justify-content: space-around;
       align-items: center;
     }
+    
+    /* 公共样式 */
+    .mt20{
+      margin-top: 20px;
+    }
+    .hidden {
+      display: none;
+    }
   </style>
 </head>
 <body>
@@ -169,33 +245,95 @@ description: "Thinking will not overcome fear but action will."
       </div>
       <div class="searchCard">
         <div class="left">
-          <div class="title">全国民办院校学生学业证书查询</div>
-          <div class="searchInfo">
-            <div class="searchForm">
-              <div class="formItem">
-                <div class="label">姓名：</div>
-                <input type="text" placeholder="请输入姓名">
+          <div class="c_1 hidden">
+            <div class="title">全国民办院校学生学业证书查询</div>
+            <div class="searchInfo">
+              <div class="searchForm">
+                <div class="formItem">
+                  <div class="label">姓名：</div>
+                  <input type="text" placeholder="请输入姓名">
+                </div>
+                <div class="formItem">
+                  <div class="label">证书编号：</div>
+                  <input type="text" placeholder="请输入证书编号">
+                </div>
+                <div class="formItem">
+                  <div class="submit">免费查询</div>
+                </div>
               </div>
-              <div class="formItem">
-                <div class="label">证书编号：</div>
-                <input type="text" placeholder="请输入证书编号">
-              </div><div class="formItem">
-                <div class="submit">免费查询</div>
+              <div class="careful">
+                <div class="c_legend">注意：</div>
+                <div class="c_item">1、点此查看<span>学历证书查询范围</span>。</div>
+                <div class="c_item">2、查询学历证书需经权属人同意。</div>
+                <div class="c_item">3、学历证书查询结果不得用于违背权属人意愿之用途。</div>
+                <div class="c_item">4、学历证书和证明书由各高校自行印制，证书编号通常为18位。不知道证书编号的，可咨询发证学校。</div>
               </div>
             </div>
-            <div class="careful">
-              <div class="c_legend">注意：</div>
-              <div class="c_item">1、点此查看<span>学历证书查询范围</span>。</div>
-              <div class="c_item">2、查询学历证书需经权属人同意。</div>
-              <div class="c_item">3、学历证书查询结果不得用于违背权属人意愿之用途。</div>
-              <div class="c_item">4、学历证书和证明书由各高校自行印制，证书编号通常为18位。不知道证书编号的，可咨询发证学校。</div>
+          </div>
+
+          <!-- 查询结果 -->
+          <div class="c_2 ">
+            <div class="title">全国民办高等教育学历证书查询结果</div>
+            <div class="c_wrap">
+              <div class="c_w_table">
+                <div class="row">
+                  <div class="td label">姓名</div>
+                  <div class="td value">李建</div>
+                </div>
+                <div class="row">
+                  <div class="td label">性别</div>
+                  <div class="td value">男</div>
+                  <div class="td label">出生日期</div>
+                  <div class="td value">1996年9月26日</div>
+                </div>
+                <div class="row">
+                  <div class="td label">入学时间</div>
+                  <div class="td value">2013年9月1日</div>
+                  <div class="td label">毕业时间</div>
+                  <div class="td value">2017年7月1日</div>
+                </div>
+                <div class="row">
+                  <div class="td label">学历类型</div>
+                  <div class="td value">普通高等教育</div>
+                  <div class="td label">学历层次</div>
+                  <div class="td value">本科</div>
+                </div>
+                <div class="row">
+                  <div class="td label">毕业院校</div>
+                  <div class="td value">湖南涉外经济学院</div>
+                  <div class="td label">院校所在地</div>
+                  <div class="td value">长沙市</div>
+                </div>
+                <div class="row">
+                  <div class="td label">专业名称</div>
+                  <div class="td value">计算机科学与技术</div>
+                  <div class="td label">学习形式</div>
+                  <div class="td value">普通全日制</div>
+                </div>
+                <div class="row">
+                  <div class="td label">证书编号</div>
+                  <div class="td value"></div>
+                  <div class="td label">毕结业结论</div>
+                  <div class="td value">毕业</div>
+                </div>
+              </div>
+              <div class="c_w_images">
+                <div class="i_pic img"></div>
+                <div class="i_code img"></div>
+              </div>
+            </div>
+            <!-- 声明 -->
+            <div class="c2_desc">
+              <div class="c2_d_legend">声明：</div>
+              <div class="c2_d_item">1、未经学历信息权属人同意，不得将本材料用于违背权属人意愿的用途。学历信息内容标注“*”号，表示该项内容不详。学历信息如有修改，请以网站在线查询内容为准。</div>
+              <div class="c2_d_item">2、本材料是打印的学历查询结果凭证，仅供查询人使用，不具有再验证功能。如需向第三方提供学历信息，建议使用具有验证功能的《教育部学历证书电子注册备案表》。</div>
             </div>
           </div>
         </div>
         <div class="right">
           <div class="legend">其他查询方式</div>
           <div class="r_item">• 本人查询</div>
-          <div class="r_item">本人注册学信网账号可免费查询。</div>
+          <div class="r_item">本人注册民教网账号可免费查询。</div>
           <div class="r_item mt20">• 企业用户查询</div>
           <div class="r_item">企业用户登录国家大学生就业服务平台后进行查询。</div>
         </div>
@@ -211,7 +349,7 @@ description: "Thinking will not overcome fear but action will."
       <div class="f_link">联系我们</div>
       <div class="f_link">招聘信息</div>
       <div class="f_link">帮助中心</div>
-      <div class="f_link">学信十周年</div>
+      <div class="f_link">民教十周年</div>
       <div class="f_link">大事记</div>
     </div>
   </div>
