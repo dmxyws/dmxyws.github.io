@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script src="https://unpkg.com/vue@3"></script>
+  <!-- import CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/element-plus/dist/index.css">
+  <!-- import JavaScript -->
+  <script src="https://unpkg.com/element-plus"></script>
+  <title>Stock Analysis</title>
+</head>
+
+<body>
+  <div id="app">
+    <el-button @click="openAddDialog">新增</el-button>
+    <el-table :data="stocks" stripe>
+      <el-table-column prop="id" label="序号"></el-table-column>
+      <el-table-column prop="name" label="股票名称"></el-table-column>
+      <el-table-column prop="code" label="股票代码"></el-table-column>
+      <el-table-column prop="buyPrice" label="买入价"></el-table-column>
+      <el-table-column prop="buyTime" label="买入时间"></el-table-column>
+      <el-table-column prop="sellPrice" label="卖出价"></el-table-column>
+      <el-table-column prop="sellTime" label="卖出时间"></el-table-column>
+      <el-table-column prop="yieldRate" label="收益率"></el-table-column>
+      <el-table-column prop="addTime" label="加入自选时间"></el-table-column>
+      <el-table-column label="操作">
+        <template #default="scope">
+          <el-button size="mini" @click="openEditDialog(scope.row)">编辑</el-button>
+          <el-button size="mini" type="danger" @click="deleteStock(scope.row.id)">删除</el-button>
+        </template>
+      </el-table-column>
+    </el-table>
+    <el-dialog v-model="addDialogVisible" title="新增">
+      <el-form :model="newStock" label-width="120px">
+        <el-form-item label="股票名称">
+          <el-input v-model="newStock.name"></el-input>
+        </el-form-item>
+        <el-form-item label="股票代码">
+          <el-input v-model="newStock.code"></el-input>
+        </el-form-item>
+        <el-form-item label="买入价">
+          <el-input v-model="newStock.buyPrice" @input="calculateYield(newStock)"></el-input>
+        </el-form-item>
+        <el-form-item label="买入时间">
+          <el-date-picker v-model="newStock.buyTime" type="datetime" placeholder="选择买入时间" format="YYYY-MM-DD HH:mm:ss"
+            value-format="YYYY-MM-DD HH:mm:ss">
+          </el-date-picker>
+        </el-form-item>
+        <el-form-item label="卖出价">
+          <el-input v-model="newStock.sellPrice" @input="calculateYield(newStock)"></el-input>
+        </el-form-item>
+        <el-form-item label="卖出时间">
+          <el-date-picker v-model="newStock.sellTime" type="datetime" placeholder="选择卖出时间" format="YYYY-MM-DD HH:mm:ss"
+            value-format="YYYY-MM-DD HH:mm:ss">
+          </el-date-picker>
+        </el-form-item>
+        <el-form-item label="收益率">
+          <el-input v-model="newStock.yieldRate" disabled></el-input>
+        </el-form-item>
+        <el-form-item label="加入自选时间">
+          <el-date-picker v-model="newStock.addTime" type="datetime" placeholder="选择加入自选时间" format="YYYY-MM-DD HH:mm:ss"
+            value-format="YYYY-MM-DD HH:mm:ss">
+          </el-date-picker>
+        </el-form-item>
+      </el-form>
+      <template #footer>
+        <el-button @click="addDialogVisible = false">取消</el-button>
+        <el-button type="primary" @click="addStock">确定</el-button>
+      </template>
+    </el-dialog>
+    <el-dialog v-model="editDialogVisible" title="编辑">
+      <el-form :model="editStock" label-width="120px">
+        <el-form-item label="股票名称">
+          <el-input v-model="editStock.name"></el-input>
+        </el-form-item>
+        <el-form-item label="股票代码">
+          <el-input v-model="editStock.code"></el-input>
+        </el-form-item>
+        <el-form-item label="买入价">
+          <el-input v-model="editStock.buyPrice" @input="calculateYield(editStock)"></el-input>
+        </el-form-item>
+        <el-form-item label="买入时间">
+          <el-date-picker v-model="editStock.buyTime" type="datetime" placeholder="选择买入时间" format="YYYY-MM-DD HH:mm:ss"
+            value-format="YYYY-MM-DD HH:mm:ss">
+          </el-date-picker>
+        </el-form-item>
+        <el-form-item label="卖出价">
+          <el-input v-model="editStock.sellPrice" @input="calculateYield(editStock)"></el-input>
+        </el-form-item>
+        <el-form-item label="卖出时间">
+          <el-date-picker v-model="editStock.sellTime" type="datetime" placeholder="选择卖出时间" format="YYYY-MM-DD HH:mm:ss"
+            value-format="YYYY-MM-DD HH:mm:ss">
+          </el-date-picker>
+        </el-form-item>
+        <el-form-item label="收益率">
+          <el-input v-model="editStock.yieldRate" disabled></el-input>
+        </el-form-item>
+        <el-form-item label="加入自选时间">
+          <el-date-picker v-model="editStock.addTime" type="datetime" placeholder="选择加入自选时间"
+            format="YYYY-MM-DD HH:mm:ss" value-format="YYYY-MM-DD HH:mm:ss">
+          </el-date-picker>
+        </el-form-item>
+      </el-form>
+      <template #footer>
+        <el-button @click="editDialogVisible = false">取消</el-button>
+        <el-button type="primary" @click="updateStock">确定</el-button>
+      </template>
+    </el-dialog>
+  </div>
+  <script>
+    const App = {
+      data() {
+        return {
+          stocks: this.getStoredStocks(),
+          newStock: {
+            id: null,
+            name: "",
+            code: "",
+            buyPrice: "",
+            buyTime: "",
+            sellPrice: "",
+            sellTime: "",
+            yieldRate: "",
+            addTime: ""
+          },
+          editStock: {
+            id: null,
+            name: "",
+            code: "",
+            buyPrice: "",
+            buyTime: "",
+            sellPrice: "",
+            sellTime: "",
+            yieldRate: "",
+            addTime: ""
+          },
+          addDialogVisible: false,
+          editDialogVisible: false
+        };
+      },
+      methods: {
+        getStoredStocks() {
+          const storedStocks = localStorage.getItem('stocks');
+          return storedStocks ? JSON.parse(storedStocks) : [];
+        },
+        saveStocksToLocalStorage() {
+          localStorage.setItem('stocks', JSON.stringify(this.stocks));
+        },
+        openAddDialog() {
+          this.addDialogVisible = true;
+          this.newStock = {
+            id: null,
+            name: "",
+            code: "",
+            buyPrice: "",
+            buyTime: "",
+            sellPrice: "",
+            sellTime: "",
+            yieldRate: "",
+            addTime: ""
+          };
+        },
+        addStock() {
+          const newId = this.stocks.length > 0 ? this.stocks[this.stocks.length - 1].id + 1 : 1;
+          this.newStock.id = newId;
+          this.stocks.push({ ...this.newStock });
+          this.addDialogVisible = false;
+          this.saveStocksToLocalStorage();
+        },
+        openEditDialog(row) {
+          this.editStock = { ...row };
+          this.editDialogVisible = true;
+        },
+        updateStock() {
+          const index = this.stocks.findIndex(stock => stock.id === this.editStock.id);
+          if (index !== -1) {
+            this.stocks.splice(index, 1, { ...this.editStock });
+          }
+          this.editDialogVisible = false;
+          this.saveStocksToLocalStorage();
+        },
+        deleteStock(id) {
+          const index = this.stocks.findIndex(stock => stock.id === id);
+          if (index !== -1) {
+            this.stocks.splice(index, 1);
+          }
+          this.saveStocksToLocalStorage();
+        },
+        calculateYield(stock) {
+          const buyPrice = parseFloat(stock.buyPrice);
+          const sellPrice = parseFloat(stock.sellPrice);
+          if (!isNaN(buyPrice) && !isNaN(sellPrice) && buyPrice !== 0) {
+            const yieldRate = ((sellPrice - buyPrice) / buyPrice) * 100;
+            stock.yieldRate = `${yieldRate.toFixed(2)}%`;
+          } else {
+            stock.yieldRate = "";
+          }
+        }
+      }
+    };
+    const app = Vue.createApp(App);
+    app.use(ElementPlus);
+    app.mount("#app");
+  </script>
+</body>
+
+</html>
